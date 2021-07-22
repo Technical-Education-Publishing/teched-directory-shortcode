@@ -1,25 +1,32 @@
 .directory-list {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 20px;
 
-    .row + .row {
+    >.row + .row {
         margin-top: 20px;
         border-top: 1px solid #eaeaea;
         padding-top: 20px;
     }
 
     .directory-item {
-        .directory-item-header {
-            margin-bottom: 20px;
+        img {
+            margin-bottom: 0;
+        }
 
+        .directory-item-header {
             h3 {
-                padding-top: 0 !important;
+                font-size: 24px;
+                font-weight: bold;
+                color: #173f49;
             }
         }
 
         .directory-item-content {
             p:last-of-type {
                 margin-bottom: 0;
+            }
+
+            .website {
+                margin-top: 10px;
             }
         }
     }

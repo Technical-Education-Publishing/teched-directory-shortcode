@@ -12,11 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 // Exit if function needed to pull meta fields does not exist
 if ( ! function_exists( 'teched_directory_get_field' ) ) exit;
 ?>
-<div class="row directory-item">
+<div class="row directory-item" <?php echo ( ! has_post_thumbnail() ) ? 'style="border-left: 8px solid #173f49;"' : ''; ?>>
     <?php if ( has_post_thumbnail() ) : ?>
         <div class="small-12 medium-4 columns">
             <div class="featured-image">
-                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_post_thumbnail( 'colormag-featured-image' ); ?></a>
+                <?php the_post_thumbnail( 'colormag-featured-image' ); ?>
             </div>
         </div>
     <?php endif; ?>
@@ -39,6 +39,11 @@ if ( ! function_exists( 'teched_directory_get_field' ) ) exit;
 
             $state = teched_directory_get_field( 'state' );
             ?>
+
+            <?php if ( ! has_post_thumbnail() ) : // Move the info into two columns if there is no photo ?>
+            <div class="row">
+                <div class="columns large-6">
+            <?php endif; ?>
 
             <p>
                 <?php if ( $name = teched_directory_get_field( 'name' ) ) : ?>
@@ -68,6 +73,11 @@ if ( ! function_exists( 'teched_directory_get_field' ) ) exit;
                 <?php endif; ?>
             </p>
 
+            <?php if ( ! has_post_thumbnail() ) : // Move the info into two columns if there is no photo ?>
+                </div>
+                <div class="columns large-6">
+            <?php endif; ?>
+
             <p>
                 <strong><?php _e( 'Address:', 'teched-directory-shortcode' ); ?></strong>
                 <br />
@@ -77,9 +87,16 @@ if ( ! function_exists( 'teched_directory_get_field' ) ) exit;
                 <?php echo ( isset( $states[ $state ] ) ) ? $states[ $state ] : $state; ?>
                 <?php echo ( $zip = teched_directory_get_field( 'zip' ) ) ? ' ' . $zip : ''; ?>
             </p>
+            <?php if ( ! has_post_thumbnail() ) : // Move the info into two columns if there is no photo ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="columns website">
+            <?php endif; ?>
 
             <?php if ( $website_url = teched_directory_get_field( 'website_url' ) ) : ?>
                 <p>
+                    <strong><?php _e( 'Website:', 'teched-directory-shortcode' ); ?></strong>
                     <a href="<?php echo trim( $website_url ); ?>" target="_blank">
                         <?php if ( $website_text = teched_directory_get_field( 'website_text' ) ) : ?>
                             <?php echo trim( $website_text ); ?>
@@ -88,6 +105,11 @@ if ( ! function_exists( 'teched_directory_get_field' ) ) exit;
                         <?php endif; ?>
                     </a>
                 </p>
+            <?php endif; ?>
+
+            <?php if ( ! has_post_thumbnail() ) : // Move the info into two columns if there is no photo ?>
+                </div>
+            </div>
             <?php endif; ?>
         </div>
     </div>
