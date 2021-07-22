@@ -1,12 +1,15 @@
 <?php
 /**
  * Plugin Name: Directory Shortcode
+ * Plugin URI: https://github.com/Technical-Education-Publishing/teched-directory-shortcode
  * Description: Add directory listings via a shortcode
  * Version: 1.0.0
  * Text Domain: teched-directory-shortcode
  * Author: Real Big Marketing
  * Author URI: https://realbigmarketing.com
  * Contributors: joelyoder
+ * GitHub Plugin URI: realbig/teched-directory-shortcode
+ * GitHub Branch: master
  */
 
 // Exit if accessed directly
