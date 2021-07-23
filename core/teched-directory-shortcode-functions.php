@@ -36,24 +36,32 @@ function teched_directory_shortcode( $attributes ) {
     //Start and object buffer so the query gets buffered for output
     ob_start();
 
-    //Pull in the state category, none set as the default
+    //Pull in the state and category, state is required but category defaults to the technical directors
 	$attributes = shortcode_atts( array( 
-		'state' => ''
+		'state' => '',
+        'category' => 'state-cte-directors',
 	), $attributes, 'teched_directory_shortcode' );
 
     $args = array(
         'post_type' => 'teched-directory',
         'tax_query' => array(
+            'relation' => 'AND',
             array(
                 'taxonomy' => 'teched-directory-state',
                 'field'    => 'slug',
                 'terms'    => $attributes['state'],
-                'posts_per_page' => -1,
-                'orderby' => 'title',
-                'order'   => 'DESC',
             ),
-        )
+            array(
+                'taxonomy' => 'teched-directory-category',
+                'field'    => 'slug',
+                'terms'    => $attributes['category'],
+            ),
+        ),
+        'posts_per_page' => -1,
+        'orderby' => 'title',
+        'order'   => 'DESC'
     );
+
     $directory_query = new  WP_Query( $args );
     
     if ( $directory_query->have_posts() ) :
